@@ -33,7 +33,7 @@ int     parser_error_cheker(const char *format, t_type *tab)
                 return (-1);
 		}
         else
-		    tab->i++;
+            tab->i++;
 	}
 	return (1);
 }

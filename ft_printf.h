@@ -38,10 +38,10 @@ typedef struct		s_type
 	size_t			pointer;
 }					t_type;
 
-int                 ft_printf(const char *, ...);
+int					ft_printf(const char *, ...);
 int					is_flag(char *format, t_type *tab);
 int					is_width(char *format, t_type *tab);
-int     			print_with_type(t_type *tab, va_list *arg);
+int					print_with_type(t_type *tab, va_list *arg);
 int					is_type(char *format, t_type *tab);
 int     			parser_error_cheker(const char *format, t_type *tab);
 void				zerofication(t_type *tab);
