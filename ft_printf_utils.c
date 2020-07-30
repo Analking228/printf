@@ -45,7 +45,10 @@ int			is_width(char *format, t_type *tab)
 			tab->i++; 
 		}
 		if (str[0])
+		{
+			tab->i--;
 			tab->width = ft_atoi(str);
+		}
 		else
 			tab->width = -1;
 		return (1);
@@ -55,5 +58,11 @@ int			is_width(char *format, t_type *tab)
 
 int			is_type(char *format, t_type *tab)
 {
-	return (1);
+	char	c;
+
+	c = format[tab->i];
+	if (c == 's')
+		return (1);
+	else
+		return (0);
 }
