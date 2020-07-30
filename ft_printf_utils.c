@@ -52,3 +52,8 @@ int			is_width(char *format, t_type *tab)
 	}
 	return (0);
 }
+
+int			is_type(char *format, t_type *tab)
+{
+	return (1);
+}

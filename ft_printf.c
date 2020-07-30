@@ -21,10 +21,12 @@ void		parse_guide()
 int 		parser_types(t_type *tab, char *format)
 {
 	if (is_flag((char *)format, tab))
-		return (1);
+		return (0);
 	if (is_width((char *)format, tab))
+		return (0);
+	if (is_type((char *)format, tab))
 		return (1);
-	return (0);
+	return (-1);
 }
 
 void		zerofication(t_type *tab)
@@ -41,33 +43,36 @@ void		zerofication(t_type *tab)
 	tab->hex = 0;
 }
 
-int			parser_main(const char *format)
+int			parser_main(const char *format, t_type *tab)
 {
-	t_type	*tab;
-
-	if (!(tab = (t_type *)malloc(sizeof(t_type *))))
-		return (-1);
-	tab->i = 0;
 	while (format[tab->i] != 0)
 	{
-		if (format[tab->i] == '%' && format[tab->i + 1])
+		if (format[tab->i] == '%' && format[tab->i++ + 1] != '%')
 		{
 			zerofication(tab);
-			parser_types(tab, (char *)format);
+			while (!parser_types(tab, (char *)format))
+				tab->i++;
+			return (2);
 		}
 		else
 			ft_putchar(format[tab->i]);
 		tab->i++;
+		return (1);
 	}
-	return (1);
+	return (0);
 }
 
 int			ft_printf(const char *format, ...)
 {
 	va_list arg;
-	
+	int		control;
+	t_type	tab;
+
 	va_start(arg, format);
-	if (!parser_main(format))
-		return (0);
-	return (1);
+	tab.i = 0;
+	while ((control = parser_main(format, &tab)) != 0)
+		if (control == 2)
+			print_with_type(&tab, &arg);
+	va_end(arg);
+	return (control < 0) ? -1 : 1;
 }

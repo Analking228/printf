@@ -1,8 +1,8 @@
 PREPROC = make fclean -C ./libft
 PROC = make -C ./libft
 CC = gcc
-FLAGS = -c -Wall -Wextra -Werror 
-SOURCE = ft_printf.c ft_printf_utils.c
+FLAGS = -c #-Wall -Wextra -Werror 
+SOURCE = ft_printf.c ft_printf_utils.c body.c
 OBJ = $(SOURCE:%.c=%.o)
 HEADER = ft_printf.h
 NAME = libftprintf.a
