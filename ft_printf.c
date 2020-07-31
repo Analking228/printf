@@ -41,8 +41,7 @@ int 		parser_types(t_type *tab, char *format)
 
 void		zerofication(t_type *tab)
 {
-	tab->minus = 0;
-	tab->zero = 0;
+	tab->flag = 0;
 	tab->width = 0;
 	tab->height = 0;
 	tab->num = 0;
@@ -64,8 +63,7 @@ int			parser_main(const char *format, t_type *tab)
 			zerofication(tab);
 			while (!(control = parser_types(tab, (char *)format)))
 				tab->i++;
-			tab->i++;
-			return (control == 1) ? 2 : -1;
+			//tab->i++;
 		}
 		else
 			ft_putchar(format[tab->i]);
@@ -91,8 +89,6 @@ int			ft_printf(const char *format, ...)
 		while ((control = parser_main(format, &tab)) != 0)
 			if (control == 2)
 				print_with_type(&tab, &arg);
-			else if (control == -1)
-				break;
 	}
 	va_end(arg);
 	return (control < 0) ? -1 : 1;

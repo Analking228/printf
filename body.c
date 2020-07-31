@@ -28,7 +28,7 @@ int     parser_error_cheker(const char *format, t_type *tab)
 			zerofication(tab);
 			while (!(control = parser_types(tab, (char *)format)))
 				tab->i++;
-			tab->i++;
+			//tab->i++;
 			if (control < 0)
                 return (-1);
 		}
