@@ -22,7 +22,8 @@ $(OBJ:%.o): $(SOURCE:%.c) $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) 
+	rm -f $(OBJ)
+	make clean -C ./libft
 
 fclean: clean
 	rm -f $(NAME) libft.a a.out
