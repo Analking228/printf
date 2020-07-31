@@ -18,14 +18,14 @@ void		parse_guide()
 
 }
 
-int 		parser_types(t_type *tab, char *format)
+int 		parser_types(t_type *tab, char *format, va_list *arg)
 {
 	if (is_flag((char *)format, tab))
 	{
 		write(1, "f", 1);
 		return (0);
 	}
-	else if (is_width((char *)format, tab))
+	else if (is_width((char *)format, tab, arg))
 	{
 		write(1, "w", 1);
 		return (0);
@@ -52,7 +52,7 @@ void		zerofication(t_type *tab)
 	tab->hex = 0;
 }
 
-int			parser_main(const char *format, t_type *tab)
+int			parser_main(const char *format, t_type *tab, va_list *arg)
 {
 	int		control;
 
@@ -61,9 +61,8 @@ int			parser_main(const char *format, t_type *tab)
 		if (format[tab->i] == '%' && format[tab->i++ + 1] != '%')
 		{
 			zerofication(tab);
-			while (!(control = parser_types(tab, (char *)format)))
+			while (!(control = parser_types(tab, (char *)format, arg)))
 				tab->i++;
-			//tab->i++;
 		}
 		else
 			ft_putchar(format[tab->i]);
@@ -81,12 +80,14 @@ int			ft_printf(const char *format, ...)
 
 	va_start(arg, format);
 	tab.i = 0;
-	if ((control = parser_error_cheker(format, &tab)) < 0)
+	if ((control = parser_error_cheker(format, &tab, &arg)) < 0)
 		write(1, "Wrong printf input", 18);
 	else
 	{
+		va_end(arg);
+		va_start(arg, format);
 		tab.i = 0;
-		while ((control = parser_main(format, &tab)) != 0)
+		while ((control = parser_main(format, &tab, &arg)) != 0)
 			if (control == 2)
 				print_with_type(&tab, &arg);
 	}

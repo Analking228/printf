@@ -30,24 +30,29 @@ int			is_flag(char *format, t_type *tab)
 	return (0);
 }
 
-int			is_width(char *format, t_type *tab)
+int			is_width(char *format, t_type *tab, va_list *arg)
 {
 	char	str[13];
 	int		i;
+	int		width;
 
-	if (((format[tab->i] >= '0') && (format[tab->i] <= '9')) || format[tab->i] == '*')
+	if (((format[tab->i] >= 48) && (format[tab->i] <= 57)))
 	{
 		i = 0;
 		while ((format[tab->i] >= '0') && (format[tab->i] <= '9'))
-		{
-			str[i] = format[tab->i];
-			i++;
-			tab->i++; 
-		}
+			str[i++] = format[tab->i++];
 		if (str[0] && str[0] != '0')
 			tab->width = ft_atoi(str);
 		tab->i--;
 		return (tab->width) ? 1 : 0;
+	}
+	else if (format[tab->i] == '*' && !tab->width)
+	{
+		if ((width = va_arg(*arg, int)) < 0 )
+			tab->width = -width;
+		else
+			tab->width = width;
+		return (1);
 	}
 	return (0);
 }
@@ -72,4 +77,9 @@ int			is_type(char *format, t_type *tab)
 	else if (c == 'X')
 		return (tab->pointer = 2);
 	return (0);
+}
+
+int			precision(char *format, t_type *tab)
+{
+	return (1);
 }

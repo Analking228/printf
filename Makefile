@@ -10,24 +10,26 @@ NAME = libftprintf.a
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(PROC)
-	cp libft/libft.a ./
-	$(CC) $(FLAGS) $(SOURCE)
+	@$(PROC)
+	@cp libft/libft.a ./
+	@$(CC) $(FLAGS) $(SOURCE)
 	@mv libft.a $(NAME)
 	@ar rcs $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	ranlib $@
+	@ranlib $@
+	#delete this!!!!!
+	gcc main.c libftprintf.a 
 
 $(OBJ:%.o): $(SOURCE:%.c) $(HEADER)
-	$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
-	make clean -C ./libft
+	@rm -f $(OBJ)
+	@make clean -C ./libft
 
 fclean: clean
-	rm -f $(NAME) libft.a a.out
-	$(PREPROC)
+	@rm -f $(NAME) libft.a a.out
+	@$(PREPROC)
 
 re: fclean all
 

@@ -19,24 +19,24 @@ NAME = libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $@ $^
-	ranlib $@
+	@ar rcs $@ $^
+	@ranlib $@
 
 $(OBJ:%.o): $(SOURCE:%.c) $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(BOBJ:%.o): $(BSOURCE:%.c) $(HEADER)
-	$(CC) $(CFLAGS) -с $< -o $@
+	@$(CC) $(CFLAGS) -с $< -o $@
 
 bonus: $(BOBJ) $(OBJ)
-	ar rcs $(NAME) $^
-	ranlib $(NAME)
+	@ar rcs $(NAME) $^
+	@ranlib $(NAME)
 
 clean:
-	rm -f $(OBJ) $(BOBJ)
+	@rm -f $(OBJ) $(BOBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

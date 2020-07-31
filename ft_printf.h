@@ -38,11 +38,12 @@ typedef struct		s_type
 
 int					ft_printf(const char *, ...);
 int					is_flag(char *format, t_type *tab);
-int					is_width(char *format, t_type *tab);
+int					is_width(char *format, t_type *tab, va_list *arg);
 int					print_with_type(t_type *tab, va_list *arg);
 int					is_type(char *format, t_type *tab);
-int     			parser_error_cheker(const char *format, t_type *tab);
+int     			parser_error_cheker(const char *format, t_type *tab, va_list *arg);
 void				zerofication(t_type *tab);
-int 				parser_types(t_type *tab, char *format);
+int 				parser_types(t_type *tab, char *format, va_list *arg);
+int 				check_arg_status(char *format, t_type *tab, va_list *arg);
 
 #endif
