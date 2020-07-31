@@ -75,11 +75,35 @@ int			is_type(char *format, t_type *tab)
 	else if (c == 'x')
 		return (tab->hex = 1);
 	else if (c == 'X')
-		return (tab->pointer = 2);
+		return (tab->hex = 2);
 	return (0);
 }
 
-int			precision(char *format, t_type *tab)
+int			is_precision(char *format, t_type *tab, va_list *arg)
 {
-	return (1);
+	char	str[13];
+	int		i;
+	int		width;
+
+	if (format[tab->i++] == 46)
+	{
+		if (((format[tab->i] >= 48) && (format[tab->i] <= 57)))
+		{
+			i = 0;
+			while ((format[tab->i] >= '0') && (format[tab->i] <= '9'))
+				str[i++] = format[tab->i++];
+			if (str[0] && str[0] != '0')
+				tab->height = ft_atoi(str);
+			tab->i--;
+			return (tab->height) ? 1 : 0;
+		}
+		if (format[tab->i] == '*' && !tab->height)
+		{
+			if ((width = va_arg(*arg, int)) < 0 )
+				width *= -1;
+			tab->height = width;
+			return (1);
+		}
+	}
+	return (0);
 }

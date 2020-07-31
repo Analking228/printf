@@ -19,8 +19,8 @@ int     main()
     char    *str = "qwerty";
 
     test = 5;
-    ft_printf("lolkek %s\n%6u %--6X\n", "lol", 15, 0x2f);
-    printf("afafa %--*dggggg", 3, 15);
+    ft_printf("lolkek %6.6s\n %c", 15, 15);
+    printf("afafa %05dggggg", -3);
     return (1);
 }
 

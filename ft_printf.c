@@ -35,6 +35,11 @@ int 		parser_types(t_type *tab, char *format, va_list *arg)
 		write(1, "t", 1);
 		return (1);
 	}
+	else if (is_precision((char *)format, tab, arg))
+	{
+		write(1, "p", 1);
+		return (1);
+	}
 	else
 		return (-1);
 }
