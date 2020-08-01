@@ -85,8 +85,9 @@ int			is_precision(char *format, t_type *tab, va_list *arg)
 	int		i;
 	int		width;
 
-	if (format[tab->i++] == 46)
+	if (format[tab->i] == 46)
 	{
+		tab->i++;
 		if (((format[tab->i] >= 48) && (format[tab->i] <= 57)))
 		{
 			i = 0;

@@ -30,14 +30,14 @@ int 		parser_types(t_type *tab, char *format, va_list *arg)
 		write(1, "w", 1);
 		return (0);
 	}
-	else if (is_type((char *)format, tab))
-	{
-		write(1, "t", 1);
-		return (1);
-	}
 	else if (is_precision((char *)format, tab, arg))
 	{
 		write(1, "p", 1);
+		return (0);
+	}
+	else if (is_type((char *)format, tab))
+	{
+		write(1, "t", 1);
 		return (1);
 	}
 	else
@@ -68,10 +68,10 @@ int			parser_main(const char *format, t_type *tab, va_list *arg)
 			zerofication(tab);
 			while (!(control = parser_types(tab, (char *)format, arg)))
 				tab->i++;
+			tab->i++;
 		}
 		else
-			ft_putchar(format[tab->i]);
-		tab->i++;
+			ft_putchar(format[tab->i++]);
 		return (1);
 	}
 	return (0);
@@ -84,6 +84,8 @@ int			ft_printf(const char *format, ...)
 	t_type	tab;
 
 	va_start(arg, format);
+	if (!format)
+		return (-1);
 	tab.i = 0;
 	if ((control = parser_error_cheker(format, &tab, &arg)) < 0)
 		write(1, "Wrong printf input", 18);
