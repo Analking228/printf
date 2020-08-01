@@ -19,7 +19,7 @@ int     main()
     char    *str = "qwerty";
 
     test = 5;
-    ft_printf("\nlolkek %-6.6s\n%0c", 15, 15);
+    ft_printf("\nlolkek %-6.6s\n%0c\n%i", "roflanlico", 'c', 15);
     printf("\n(orig) afafa %05dggggg", -3);
     return (1);
 }
