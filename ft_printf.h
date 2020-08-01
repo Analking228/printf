@@ -42,9 +42,15 @@ int					is_width(char *format, t_type *tab, va_list *arg);
 int					is_precision(char *format, t_type *tab, va_list *arg);
 int					is_type(char *format, t_type *tab);
 int					print_with_type(t_type *tab, va_list *arg);
-int     			parser_error_cheker(const char *format, t_type *tab, va_list *arg);
+int					parser_error_cheker(const char *format, t_type *tab, va_list *arg);
 void				zerofication(t_type *tab);
 int 				parser_types(t_type *tab, char *format, va_list *arg);
 int 				check_arg_status(char *format, t_type *tab, va_list *arg);
+int					print_char(t_type *tab, va_list *arg);
+int					print_str(t_type *tab, va_list *arg);
+int					print_num(t_type *tab, va_list *arg);
+int					print_unum(t_type *tab, va_list *arg);
+int					print_pointer(t_type *tab, va_list *arg);
+int					print_hex(t_type *tab, va_list *arg);
 
 #endif

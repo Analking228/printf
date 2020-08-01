@@ -14,6 +14,18 @@
 
 int     print_with_type(t_type *tab, va_list *arg)
 {
+	if (tab->ch == 1)
+		return (print_char(tab, arg));
+	else if (tab->str == 1)
+		return (print_str(tab, arg));
+	else if (tab->num == 1)
+		return (print_num(tab, arg));
+	else if (tab->unum)
+		return (print_unum(tab, arg));
+	else if (tab->pointer)
+		return (print_pointer(tab, arg));
+	else if (tab->hex)
+		return (print_hex(tab, arg));
     return(1);
 }
 
