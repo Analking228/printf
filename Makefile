@@ -18,8 +18,6 @@ $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@ranlib $@
-	#delete this!!!!!
-	#gcc main.c libftprintf.a 
 
 $(OBJ:%.o): $(SOURCE:%.c) $(HEADER)
 	@$(CC) $(FLAGS) -c $< -o $@

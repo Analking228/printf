@@ -50,7 +50,7 @@ int			print_pointer(t_type *tab, va_list *arg)
 
 	ptr = va_arg(*arg, size_t);
 	len = get_len(ptr);
-	if (tab->height == 0 && ptr == 0)
+	if (tab->height == 0 && ptr == 0 && tab->the_was == 1)
 		len = 0;
 	if ((tab->height -= len) > 0)
 		len += tab->height;

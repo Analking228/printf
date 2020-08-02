@@ -28,6 +28,8 @@ typedef struct		s_type
     /*WidthNheight*/
 	int				width;
 	int				height;
+	int				the_was;
+	int				the_be;
     /*types*/
 	int				num;
 	unsigned int	unum;

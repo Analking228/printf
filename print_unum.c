@@ -48,7 +48,7 @@ int			print_unum(t_type *tab, va_list *arg)
 
 	unum = va_arg(*arg, unsigned);
 	len = get_len(unum);
-	if (tab->height == 0 && unum == 0)
+	if (tab->height == 0 && unum == 0 && tab->the_was == 1)
 		len = 0;
 	if ((tab->height -= len) > 0)
 		len += tab->height;

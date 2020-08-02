@@ -40,9 +40,8 @@ int     main()
 	char	*u = "-0";
 
     test = 1234567899;
-	//ft_printf("\n%.*i", 0, 15);
-    printf("\n%d\n", ft_printf("%i, %d, %d, %d, %d, %s, %c, %u", i, j, k, l, m, n, c, j));
-    printf("\n%d\n", printf("%i, %d, %d, %d, %d, %s, %c, %u", i, j, k, l, m, n, c, j));
+    printf("\n%d\n", ft_printf("%0.0i", i));
+    printf("\n%d\n", printf("%0.0i", i));
     return (1);
 }
 

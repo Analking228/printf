@@ -62,6 +62,8 @@ int			print_num(t_type *tab, va_list *arg)
 
 	num = va_arg(*arg, int);
 	len = get_len(num);
+	if (tab->height == 0 && num == 0 && tab->the_was == 1)
+		len = 0;
 	if ((tab->height -= len) > 0)
 		len += tab->height;
 	if (num < 0)

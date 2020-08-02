@@ -24,8 +24,16 @@ int 		parser_types(t_type *tab, char *format, va_list *arg)
 		return (0);
 	else if (is_width((char *)format, tab, arg))
 		return (0);
-	else if (is_precision((char *)format, tab, arg))
-		return (0);
+	else if (format[tab->i] == 46)
+	{
+		tab->i++;
+		if (ft_isdigit(tab->i))
+		{
+			is_precision((char *)format, tab, arg);
+			return (1);
+		}
+		return (is_type((char *)format, tab)) ? 1 : 0;
+	}
 	else if (is_type((char *)format, tab))
 		return (1);
 	else
@@ -43,6 +51,8 @@ void		zerofication(t_type *tab)
 	tab->unum = 0;
 	tab->pointer = 0;
 	tab->hex = 0;
+	tab->the_was = 0;
+	tab->the_be = 0;
 }
 
 int			parser_main(const char *format, t_type *tab, va_list *arg)
@@ -78,9 +88,8 @@ int			ft_printf(const char *format, ...)
 		return (-1);
 	va_start(arg, format);
 	tab.i = 0;
-	if ((control = parser_error_cheker(format, &tab, &arg)) < 0)
-		ft_putstr("Wrong printf input");
-	else
+	tab.prtd = 0;
+	if ((control = parser_error_cheker(format, &tab, &arg)) != -1)
 	{
 		va_end(arg);
 		va_start(arg, format);

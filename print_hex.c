@@ -52,7 +52,7 @@ int			print_hex(t_type *tab, va_list *arg)
 
 	hex = va_arg(*arg, unsigned);
 	len = get_len(hex);
-	if (tab->height == 0 && hex == 0)
+	if (tab->height == 0 && hex == 0 && tab->the_was == 1)
 		len = 0;
 	if ((tab->height -= len) > 0)
 		len += tab->height;
