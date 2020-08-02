@@ -28,17 +28,15 @@ int		print_str(t_type *tab, va_list *arg)
 	if ((tab->width) > len)
 	{
 		tab->width -= len;
-		tab->prtd += tab->width;
 		if (tab->flag != 1)
 			ft_putwhitespace(tab->width);
 		write(1, str, tab->height);
 		if (tab->flag == 1)
 			ft_putwhitespace(tab->width);
-		return (tab->i++);
+		return (tab->prtd += tab->width);
 	}
 	write(1, str, tab->height);
-	tab->prtd += len;
-	return (tab->i++);
+	return (tab->prtd += len);
 }
 
 int		print_char(t_type *tab, va_list *arg)
@@ -54,9 +52,8 @@ int		print_char(t_type *tab, va_list *arg)
 		ft_putchar(c);
 		if (tab->flag == 1)
 			ft_putwhitespace(tab->width);
-		return (tab->i++);
+		return (tab->prtd++);
 	}
 	ft_putchar(c);
-	tab->prtd += 1;
-	return (tab->i++);
+	return (tab->prtd++);
 }

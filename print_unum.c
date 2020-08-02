@@ -48,21 +48,19 @@ int			print_unum(t_type *tab, va_list *arg)
 
 	unum = va_arg(*arg, unsigned);
 	len = get_len(unum);
-	if (tab->height == 0 && unum == 0 && tab->the_was == 1)
+	if (tab->height == 0 && unum == 0 && tab->is_height == 1)
 		len = 0;
 	if ((tab->height -= len) > 0)
 		len += tab->height;
 	if ((tab->width -= len) > 0)
 	{
-		tab->prtd += len + tab->width + 2;
 		if (tab->flag == 0)
 			ft_putwhitespace(tab->width);
 		put_main(tab, unum, len);
 		if (tab->flag == 1)
 			ft_putwhitespace(tab->width);
-		return (tab->i++);
+		return (tab->prtd += len + tab->width + 2);
 	}
-	tab->prtd += len + 2;
 	put_main(tab, unum, len);
-	return (tab->i++);
+	return (tab->prtd += len + 2);
 }

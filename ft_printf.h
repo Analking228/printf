@@ -28,15 +28,10 @@ typedef struct		s_type
     /*WidthNheight*/
 	int				width;
 	int				height;
-	int				the_was;
-	int				the_be;
+	int				is_width;
+	int				is_height;
     /*types*/
-	int				num;
-	unsigned int	unum;
-	int				ch;
-	int				str;
-	unsigned int	hex;
-	size_t			pointer;
+	char			type;
 }					t_type;
 
 int					ft_printf(const char *, ...);

@@ -1,5 +1,5 @@
-CC = gcc
-CFLAGS = -c -Wall -Wextra -Werror -I.
+CC = clang
+CFLAGS = -c -g -I.
 SOURCE = ft_isspace.c ft_putchar_fd.c ft_strlcat.c ft_tolower.c \
 			ft_atoi.c ft_itoa.c ft_putendl_fd.c ft_strlcpy.c ft_toupper.c \
 			ft_bzero.c ft_memccpy.c ft_putnbr_fd.c ft_strlen.c \

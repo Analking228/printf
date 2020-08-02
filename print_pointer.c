@@ -50,21 +50,19 @@ int			print_pointer(t_type *tab, va_list *arg)
 
 	ptr = va_arg(*arg, size_t);
 	len = get_len(ptr);
-	if (tab->height == 0 && ptr == 0 && tab->the_was == 1)
+	if (tab->height == 0 && ptr == 0 && tab->is_height == 1)
 		len = 0;
 	if ((tab->height -= len) > 0)
 		len += tab->height;
 	if ((tab->width -= (len + 2)) > 0)
 	{
-		tab->prtd += len + tab->width + 2;
 		if (tab->flag == 0)
 			ft_putwhitespace(tab->width);
 		put_ptr(tab, ptr, len);
 		if (tab->flag == 1)
 			ft_putwhitespace(tab->width);
-		return (tab->i++);
+		return (tab->prtd += len + tab->width + 2);
 	}
-	tab->prtd += len + 2;
 	put_ptr(tab, ptr, len);
-	return (tab->i++);
+	return (tab->prtd += len + 2);
 }

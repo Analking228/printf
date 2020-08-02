@@ -14,15 +14,12 @@
 
 int			is_flag(char *format, t_type *tab)
 {
-	char	c;
-
-	c = format[tab->i];
-	if (c == '-' && tab->flag != 2) 
+	if (format[tab->i] == '-') 
 	{
 		tab->flag = 1;
 		return (1);
 	}
-	else if (c == '0' && tab->flag != 1)
+	else if (format[tab->i] == '0' && tab->flag != 1)
 	{
 		tab->flag = 2;
 		return (1);
@@ -32,32 +29,51 @@ int			is_flag(char *format, t_type *tab)
 
 int			is_width(char *format, t_type *tab, va_list *arg)
 {
-	char	str[13];
-	int		i;
-	int		width;
 
-	if (((format[tab->i] >= 48) && (format[tab->i] <= 57)))
+	int		i;
+
+	if (format[tab->i] == '*')
+	{
+		tab->width = va_arg(*arg, int);
+		tab->is_width = 1;
+		tab->i++;
+	}
+	else if (ft_isdigit(format[tab->i]))
+	{
+		tab->width = ft_atoi(&format[tab->i]);
+		while (ft_isdigit(format[tab->i]) && format[tab->i])
+			tab->i++;
+		tab->is_width = 1;
+	}
+	return (tab->width && tab->is_width) ? 1 : 0;
+}
+
+int			is_precision(char *format, t_type *tab, va_list *arg)
+{
+	int		i;
+	char	str[13];
+
+	if (format[tab->i] == '*')
+	{
+		tab->height = va_arg(*arg, int);
+		tab->i++;
+		tab->is_height = 1;
+	}
+	else if (format[tab->i] == '-' || ft_isdigit(format[tab->i]))
 	{
 		i = 0;
-		while ((format[tab->i] >= '0') && (format[tab->i] <= '9'))
-			str[i++] = format[tab->i++];
-		if (str[0] && str[0] != '0')
+		if (format[tab->i] == '-')
+			str[i++] = '-';
+		while (ft_isdigit(format[tab->i]))
 		{
-			tab->width = ft_atoi(str);
-			tab->the_be = 1;
+			str[i++] = format[tab->i++];
+			tab->is_height = 1;
 		}
-		tab->i--;
-		return (tab->width) ? 1 : 0;
+		tab->height = ft_atoi(str);
+		if (tab->height >= 0 && tab->flag == 1)
+			tab->flag = 2;
 	}
-	else if (format[tab->i] == '*' && !tab->the_be)
-	{
-		if ((width = va_arg(*arg, int)) < 0 )
-			tab->width = -width;
-		else
-			tab->width = width;
-		return (1);
-	}
-	return (0);
+	return (tab->height && tab->is_height) ? 1 : 0;
 }
 
 int			is_type(char *format, t_type *tab)
@@ -66,46 +82,19 @@ int			is_type(char *format, t_type *tab)
 
 	c = format[tab->i];
 	if (c == 'c')
-		return (tab->ch = 1);
+		return (tab->type = 'c');
 	else if (c == 's')
-		return (tab->str = 1);
+		return (tab->type = 's');
 	else if (c == 'i' || c == 'd')
-		return (tab->num = 1);
+		return (tab->type = 'd');
 	else if (c == 'u')
-		return (tab->unum = 1);
+		return (tab->type = 'u');
 	else if (c == 'p')
-		return (tab->pointer = 1);
+		return (tab->type = 'p');
 	else if (c == 'x')
-		return (tab->hex = 1);
+		return (tab->type = 'x');
 	else if (c == 'X')
-		return (tab->hex = 2);
-	return (0);
-}
-
-int			is_precision(char *format, t_type *tab, va_list *arg)
-{
-	char	str[13];
-	int		i;
-	int		width;
-
-	if (ft_isdigit(format[tab->i]))
-	{
-		i = 0;
-		while (ft_isdigit(format[tab->i]))
-			str[i++] = format[tab->i++];
-		if (str[0] && str[0] != '0')
-			tab->height = ft_atoi(str);
-		tab->i--;
-		return (tab->height) ? 1 : 0;
-	}
-	if (format[tab->i] == '*' && !tab->the_was)
-	{
-		if ((width = va_arg(*arg, int)) < 0 )
-			width *= -1;
-		tab->height = width;
-		tab->the_was = 1;
-		return (1);
-	}
+		return (tab->type = 'X');
 	return (0);
 }
 

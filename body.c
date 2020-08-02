@@ -14,41 +14,17 @@
 
 int     print_with_type(t_type *tab, va_list *arg)
 {
-	if (tab->ch)
+	if (tab->type == 'c')
 		return (print_char(tab, arg));
-	else if (tab->str)
+	else if (tab->type == 's')
 		return (print_str(tab, arg));
-	else if (tab->num)
+	else if (tab->type == 'd')
 		return (print_num(tab, arg));
-	else if (tab->unum)
+	else if (tab->type == 'u')
 		return (print_unum(tab, arg));
-	else if (tab->pointer)
+	else if (tab->type == 'p')
 		return (print_pointer(tab, arg));
-	else if (tab->hex)
+	else if (tab->type == 'x' || tab->type == 'X')
 		return (print_hex(tab, arg));
     return(1);
-}
-
-int     parser_error_cheker(const char *format, t_type *tab, va_list *arg)
-{
-    int		control;
-
-	while (format[tab->i] != 0)
-	{
-		if (format[tab->i] == '%' && format[tab->i++ + 1] != '%')
-		{
-			zerofication(tab);
-			while (!(control = parser_types(tab, (char *)format, arg)))
-				tab->i++;
-			tab->i++;
-			if (control < 0)
-			{
-				write(1, &format[tab->i], 1);
-                return (-1);
-			}
-		}
-        else
-            tab->i++;
-	}
-	return (1);
 }

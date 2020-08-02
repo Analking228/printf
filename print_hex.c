@@ -26,7 +26,7 @@ static void	put_hex(unsigned hex, t_type *tab)
 {
 	char	*arr;
 
-	if (tab->hex == 1)
+	if (tab->type == 'x')
 		arr = "0123456789abcdef";
 	else
 		arr = "0123456789ABCDEF";
@@ -52,21 +52,19 @@ int			print_hex(t_type *tab, va_list *arg)
 
 	hex = va_arg(*arg, unsigned);
 	len = get_len(hex);
-	if (tab->height == 0 && hex == 0 && tab->the_was == 1)
+	if (tab->height == 0 && hex == 0 && tab->is_height == 1)
 		len = 0;
 	if ((tab->height -= len) > 0)
 		len += tab->height;
 	if ((tab->width -= len) > 0)
 	{
-		tab->prtd += len + tab->width;
 		if (tab->flag == 0)
 			ft_putwhitespace(tab->width);
 		put_main(tab, hex, len);
 		if (tab->flag == 1)
 			ft_putwhitespace(tab->width);
-		return (tab->i++);
+		return (tab->prtd += len + tab->width);
 	}
-	tab->prtd += len;
 	put_main(tab, hex, len);
-	return (tab->i++);
+	return (tab->prtd += len);
 }

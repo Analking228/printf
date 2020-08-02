@@ -40,8 +40,8 @@ int     main()
 	char	*u = "-0";
 
     test = 1234567899;
-    printf("\n%d\n", ft_printf("%0.0i", i));
-    printf("\n%d\n", printf("%0.0i", i));
+	ft_printf("%----.5d1234", 7);
+    printf("%----.5d1234", 7);
     return (1);
 }
 

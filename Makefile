@@ -1,7 +1,7 @@
 PREPROC = make fclean -C ./libft
 PROC = make -C ./libft
-CC = gcc
-FLAGS = -c #-Wall -Wextra -Werror 
+CC = clang
+FLAGS = -c -g
 SOURCE = ft_printf.c ft_printf_utils.c body.c print_digit.c print_str_c.c \
 			print_pointer.c print_unum.c print_hex.c
 OBJ = $(SOURCE:%.c=%.o)

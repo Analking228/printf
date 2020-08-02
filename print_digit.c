@@ -62,7 +62,7 @@ int			print_num(t_type *tab, va_list *arg)
 
 	num = va_arg(*arg, int);
 	len = get_len(num);
-	if (tab->height == 0 && num == 0 && tab->the_was == 1)
+	if (tab->height == 0 && num == 0 && tab->is_height == 1)
 		len = 0;
 	if ((tab->height -= len) > 0)
 		len += tab->height;
@@ -70,15 +70,13 @@ int			print_num(t_type *tab, va_list *arg)
 		len += 1;
 	if ((tab->width -= len) > 0)
 	{
-		tab->prtd += len + tab->width;
 		if (tab->flag == 0)
 			ft_putwhitespace(tab->width);
 		put_digit(tab, num, len);
 		if (tab->flag == 1)
 			ft_putwhitespace(tab->width);
-		return (tab->i++);
+		return (tab->prtd += len + tab->width);
 	}
 	put_digit(tab, num, len);
-	tab->prtd+= len;
-	return (tab->i++);
+	return (tab->prtd+= len);
 }
