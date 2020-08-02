@@ -22,24 +22,24 @@ static int	get_len(unsigned int i)
 	return (len);
 }
 
-static void	put(unsigned unum)
+static void	put_unum(unsigned unum)
 {
 	char	c;
 
 	if (unum >= 10)
-		put(unum / 10);
+		put_unum(unum / 10);
 	c = (unum % 10) + '0';
 	ft_putchar(c);
 }
 
-static void	put_unum(t_type *tab, unsigned unum, int len)
+static void	put_main(t_type *tab, unsigned unum, int len)
 {
 	if (len == 0)
 		return ;
 	if (tab->flag == 2)
 		ft_putzero(tab->width);
 	ft_putzero(tab->height);
-	put(unum);
+	put_unum(unum);
 }
 int			print_unum(t_type *tab, va_list *arg)
 {
@@ -56,11 +56,11 @@ int			print_unum(t_type *tab, va_list *arg)
 	{
 		if (tab->flag == 0)
 			ft_putwhitespace(tab->width);
-		put_unum(tab, unum, len);
+		put_main(tab, unum, len);
 		if (tab->flag == 1)
 			ft_putwhitespace(tab->width);
 		return (tab->i++);
 	}
-	put_unum(tab, unum, len);
+	put_main(tab, unum, len);
 	return (tab->i++);
 }

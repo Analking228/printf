@@ -42,17 +42,16 @@ int		print_str(t_type *tab, va_list *arg)
 int		print_char(t_type *tab, va_list *arg)
 {
 	char	c;
-	int		len;
 
 	c = va_arg(*arg, int);
 	if (tab->width > 1)
 	{
-		len = (tab->width) - 1;
+		tab->width -= 1;
 		if (tab->flag != 1)
-			ft_putwhitespace(len);
+			ft_putwhitespace(tab->width);
 		ft_putchar(c);
 		if (tab->flag == 1)
-			ft_putwhitespace(len);
+			ft_putwhitespace(tab->width);
 		return (tab->i++);
 	}
 	ft_putchar(c);
