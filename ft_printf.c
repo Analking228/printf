@@ -56,7 +56,6 @@ int			parser_main(const char *format, t_type *tab, va_list *arg)
 			zerofication(tab);
 			while (!(control = parser_types(tab, (char *)format, arg)))
 				tab->i++;
-			//tab->i++(прописывать в принтах основной функции!!!!!)
 			return (2);
 		}
 		else
@@ -77,7 +76,7 @@ int			ft_printf(const char *format, ...)
 	va_start(arg, format);
 	tab.i = 0;
 	if ((control = parser_error_cheker(format, &tab, &arg)) < 0)
-		write(1, "Wrong printf input", 18);
+		ft_putstr("Wrong printf input");
 	else
 	{
 		va_end(arg);

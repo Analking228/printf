@@ -14,11 +14,11 @@
 
 int     print_with_type(t_type *tab, va_list *arg)
 {
-	if (tab->ch == 1)
+	if (tab->ch)
 		return (print_char(tab, arg));
-	else if (tab->str == 1)
+	else if (tab->str)
 		return (print_str(tab, arg));
-	else if (tab->num == 1)
+	else if (tab->num)
 		return (print_num(tab, arg));
 	else if (tab->unum)
 		return (print_unum(tab, arg));
@@ -35,8 +35,6 @@ int     parser_error_cheker(const char *format, t_type *tab, va_list *arg)
 
 	while (format[tab->i] != 0)
 	{
-		/*write(1, "\n", 1);
-		write(1, &format[tab->i], 1);*/
 		if (format[tab->i] == '%' && format[tab->i++ + 1] != '%')
 		{
 			zerofication(tab);

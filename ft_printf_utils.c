@@ -108,3 +108,15 @@ int			is_precision(char *format, t_type *tab, va_list *arg)
 	}
 	return (0);
 }
+
+void	ft_putwhitespace(int i)
+{
+	while (i-- > 0)
+		ft_putchar(' ');
+}
+
+void	ft_putzero(int i)
+{
+	while (i-- > 0)
+		ft_putchar('0');
+}

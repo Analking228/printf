@@ -51,5 +51,7 @@ int					print_num(t_type *tab, va_list *arg);
 int					print_unum(t_type *tab, va_list *arg);
 int					print_pointer(t_type *tab, va_list *arg);
 int					print_hex(t_type *tab, va_list *arg);
+void				ft_putwhitespace(int i);
+void				ft_putzero(int i);
 
 #endif
