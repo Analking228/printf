@@ -38,10 +38,14 @@ int     main()
 	char	*s = "-2147483648";
 	char	*t = "0x12345678";
 	char	*u = "-0";
+	int		res1;
+	int		res2;
 
     test = 1234567899;
-	ft_printf("%----.5d1234", 7);
-    printf("%----.5d1234", 7);
+	res1 = ft_printf("%5.0d1234\n", 0);
+    res2 = printf("%5.0d1234\n", 0);
+	printf("%d\n", res1);
+	printf("%d\n", res2);
     return (1);
 }
 
