@@ -23,6 +23,7 @@ typedef struct		s_type
 {
 	/*counter*/
 	int				i;
+	int				prtd;
 	int				flag;
     /*WidthNheight*/
 	int				width;

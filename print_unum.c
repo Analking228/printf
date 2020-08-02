@@ -54,6 +54,7 @@ int			print_unum(t_type *tab, va_list *arg)
 		len += tab->height;
 	if ((tab->width -= len) > 0)
 	{
+		tab->prtd += len + tab->width + 2;
 		if (tab->flag == 0)
 			ft_putwhitespace(tab->width);
 		put_main(tab, unum, len);
@@ -61,6 +62,7 @@ int			print_unum(t_type *tab, va_list *arg)
 			ft_putwhitespace(tab->width);
 		return (tab->i++);
 	}
+	tab->prtd += len + 2;
 	put_main(tab, unum, len);
 	return (tab->i++);
 }

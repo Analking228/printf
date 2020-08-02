@@ -59,7 +59,10 @@ int			parser_main(const char *format, t_type *tab, va_list *arg)
 			return (2);
 		}
 		else
+		{
+			tab->prtd++;
 			ft_putchar(format[tab->i++]);
+		}
 		return (1);
 	}
 	return (0);
@@ -87,5 +90,5 @@ int			ft_printf(const char *format, ...)
 				print_with_type(&tab, &arg);
 	}
 	va_end(arg);
-	return (control < 0) ? -1 : 1;
+	return (control < 0) ? -1 : tab.prtd ;
 }

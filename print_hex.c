@@ -31,7 +31,7 @@ static void	put_hex(unsigned hex, t_type *tab)
 	else
 		arr = "0123456789ABCDEF";
 	if (hex >= 16)
-		put_ox(hex / 16, tab);
+		put_hex(hex / 16, tab);
 	ft_putchar(arr[hex % 16]);
 }
 
@@ -49,7 +49,6 @@ int			print_hex(t_type *tab, va_list *arg)
 {
 	unsigned int	hex;
 	int				len;
-	int				i;
 
 	hex = va_arg(*arg, unsigned);
 	len = get_len(hex);
@@ -59,6 +58,7 @@ int			print_hex(t_type *tab, va_list *arg)
 		len += tab->height;
 	if ((tab->width -= len) > 0)
 	{
+		tab->prtd += len + tab->width;
 		if (tab->flag == 0)
 			ft_putwhitespace(tab->width);
 		put_main(tab, hex, len);
@@ -66,6 +66,7 @@ int			print_hex(t_type *tab, va_list *arg)
 			ft_putwhitespace(tab->width);
 		return (tab->i++);
 	}
+	tab->prtd += len;
 	put_main(tab, hex, len);
 	return (tab->i++);
 }
