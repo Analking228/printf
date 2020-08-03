@@ -46,6 +46,8 @@ int 		parser_types(t_type *tab, char *format, va_list *arg)
 		{
 			if (!is_precision((char *)format, tab, arg))
 				return (-1);
+			if (tab->height < 0)
+			tab->is_height = 0;
 		}
 		else
 			tab->is_height = 1;		
