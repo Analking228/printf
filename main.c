@@ -42,10 +42,10 @@ int     main()
 	int		res2;
 
     test = 1234567899;
-	a = 4;
+	a = 1;
 	b = 0;
-	res1 = ft_printf("%-12s\n", p);
-    res2 = printf("%-12s\n", p);
+	res1 = ft_printf("%0*.*d<\n", a, b, l);
+    res2 = printf("%0*.*d<\n", a, b, l);
 	printf("%d\n", res1);
 	printf("%d\n", res2);
     return (1);

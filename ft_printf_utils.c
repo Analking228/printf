@@ -60,8 +60,6 @@ int			is_precision(char *format, t_type *tab, va_list *arg)
 		tab->height = va_arg(*arg, int);
 		tab->i++;
 		tab->is_height = 1;
-		if (tab->flag == 2 && tab->height > 0)
-			tab->flag = 0;
 	}
 	else if (format[tab->i] == '-' || ft_isdigit(format[tab->i]))
 	{
