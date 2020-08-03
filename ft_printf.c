@@ -42,8 +42,13 @@ int 		parser_types(t_type *tab, char *format, va_list *arg)
 	if (format[tab->i] == '.')
 	{
 		tab->i++;
-		if (!is_precision((char *)format, tab, arg))
+		if (!(is_type((char *)format, tab)))
+		{
+			if (!is_precision((char *)format, tab, arg))
 				return (-1);
+		}
+		else
+			tab->is_height = 1;		
 	}
 	if (is_type((char *)format, tab))
 		return (1);

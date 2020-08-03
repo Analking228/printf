@@ -73,7 +73,7 @@ int			is_precision(char *format, t_type *tab, va_list *arg)
 		if (tab->height >= 0 && tab->flag == 1)
 			tab->flag = 2;
 	}
-	return (tab->height && tab->is_height) ? 1 : 0;
+	return (tab->is_height) ? 1 : 0;
 }
 
 int			is_type(char *format, t_type *tab)
