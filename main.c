@@ -44,8 +44,8 @@ int     main()
     test = 1234567899;
 	a = 4;
 	b = 0;
-	res1 = ft_printf("%.*s,\n", -2, NULL, NULL);
-    res2 = printf("%.*s,\n", -2, NULL, NULL);
+	res1 = ft_printf("%-12s\n", p);
+    res2 = printf("%-12s\n", p);
 	printf("%d\n", res1);
 	printf("%d\n", res2);
     return (1);

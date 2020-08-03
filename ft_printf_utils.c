@@ -37,7 +37,7 @@ int			is_width(char *format, t_type *tab, va_list *arg)
 		tab->width = va_arg(*arg, int);
 		if (tab->width < 0)
 		{
-			tab->width *= -1;
+			tab->width = -tab->width;
 			tab->flag = 1;
 		}
 		tab->is_width = 1;

@@ -5,18 +5,20 @@
 
 int	main()
 {
-	char		buf[4 + 1];
+	char		buf[26];
 	ssize_t		size;
 	int			fd;
 	int			i;
 
 	fd = open("wtf.txt", O_RDONLY);
-	size = read(fd, buf, 4);
-	buf[size] = 0;
+	size = read(fd, buf, 25);
+	buf[25] = 0;
 	while (buf[i])
 	{
 		ft_putstr(ft_itoa(buf[i]));
-		ft_putchar('\n');
+		ft_putchar(' ');
+		if (buf[i] == '\n')
+			ft_putchar('\n');
 		i++;
 	}
 	return (1);

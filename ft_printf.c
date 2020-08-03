@@ -29,7 +29,12 @@ int     parser_error_cheker(const char *format, t_type *tab, va_list *arg)
                 return (-1);
 		}
         else
-            tab->i++;
+            {
+				if (format[tab->i] == '%')
+					tab->i += 2;
+				else
+					tab->i++;
+			}
 	}
 	return (1);
 }
@@ -83,8 +88,14 @@ int			parser_main(const char *format, t_type *tab, va_list *arg)
 		}
 		else
 		{
+			if (format[tab->i] == '%')
+			{
+				ft_putchar(format[tab->i]);
+				tab->i += 2;
+			}
+			else
+				ft_putchar(format[tab->i++]);
 			tab->prtd++;
-			ft_putchar(format[tab->i++]);
 		}
 		return (1);
 	}

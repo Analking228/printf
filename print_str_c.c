@@ -33,7 +33,7 @@ int		print_str(t_type *tab, va_list *arg)
 		write(1, str, tab->height);
 		if (tab->flag == 1)
 			ft_putwhitespace(tab->width);
-		return (tab->prtd += tab->width);
+		return (tab->prtd += tab->width + len);
 	}
 	write(1, str, tab->height);
 	return (tab->prtd += len);
