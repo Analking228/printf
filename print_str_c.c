@@ -52,7 +52,7 @@ int		print_char(t_type *tab, va_list *arg)
 		ft_putchar(c);
 		if (tab->flag == 1)
 			ft_putwhitespace(tab->width);
-		return (tab->prtd++);
+		return (tab->prtd+= tab->width + 1);
 	}
 	ft_putchar(c);
 	return (tab->prtd++);

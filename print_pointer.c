@@ -37,7 +37,7 @@ static void	put_ptr(t_type *tab, size_t ptr, int len)
 	ft_putstr("0x");
 	if (len == 0)
 		return ;
-	if (tab->flag == 0)
+	if (tab->flag == 2)
 		ft_putzero(tab->width);
 	ft_putzero(tab->height);
 	put_main(ptr);
