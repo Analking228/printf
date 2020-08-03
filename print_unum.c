@@ -17,7 +17,7 @@ static int	get_len(unsigned int i)
 	int		len;
 
 	len = 1;
-	while (i /= 16)
+	while (i /= 10)
 		len += 1;
 	return (len);
 }
@@ -59,8 +59,8 @@ int			print_unum(t_type *tab, va_list *arg)
 		put_main(tab, unum, len);
 		if (tab->flag == 1)
 			ft_putwhitespace(tab->width);
-		return (tab->prtd += len + tab->width + 2);
+		return (tab->prtd += len + tab->width);
 	}
 	put_main(tab, unum, len);
-	return (tab->prtd += len + 2);
+	return (tab->prtd += len);
 }
