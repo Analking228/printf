@@ -18,7 +18,7 @@ static int	get_len(unsigned int i)
 
 	len = 1;
 	while (i /= 16)
-		len += 1;
+		len++;
 	return (len);
 }
 

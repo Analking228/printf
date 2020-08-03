@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-static int	get_len(unsigned int i)
+static int	get_len(unsigned int unum)
 {
 	int		len;
 
 	len = 1;
-	while (i /= 10)
-		len += 1;
+	while (unum /= 10)
+		len++;
 	return (len);
 }
 

@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-static int		get_len(int i)
+static int		get_len(int num)
 {
 	int len;
 
 	len = 1;
-	while (i /= 10)
-		len += 1;
+	while (num /= 10)
+		len++;
 	return (len);
 }
 

@@ -12,27 +12,27 @@
 
 #include "ft_printf.h"
 
-static int	get_len(size_t arg)
+static int	get_len(size_t ptr)
 {
 	int		len;
 
 	len = 1;
-	while (arg /= 16)
-		len += 1;
+	while (ptr /= 16)
+		len++;
 	return (len);
 }
 
-static void	put_main(size_t arg)
+static void	put_main(size_t ptr)
 {
 	char	*arr;
 
 	arr = "0123456789abcdef";
-	if (arg >= 16)
-		put_main(arg / 16);
-	ft_putchar(arr[arg % 16]);
+	if (ptr >= 16)
+		put_main(ptr / 16);
+	ft_putchar(arr[ptr % 16]);
 }
 
-static void	put_ptr(t_type *tab, size_t arg, int len)
+static void	put_ptr(t_type *tab, size_t ptr, int len)
 {
 	ft_putstr("0x");
 	if (len == 0)
@@ -40,7 +40,7 @@ static void	put_ptr(t_type *tab, size_t arg, int len)
 	if (tab->flag == 0)
 		ft_putzero(tab->width);
 	ft_putzero(tab->height);
-	put_main(arg);
+	put_main(ptr);
 }
 
 int			print_pointer(t_type *tab, va_list *arg)
