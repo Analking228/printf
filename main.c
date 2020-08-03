@@ -40,20 +40,13 @@ int     main()
 	char	*u = "-0";
 	int		res1;
 	int		res2;
-<<<<<<< HEAD
-
 
     test = 1234567899;
-	res1 = ft_printf("%5.d", 0);
-    res2 = printf("%5.d", 0);
-	printf("\n%d\n", res1);
-=======
-
-    test = 1234567899;
-	res1 = ft_printf("%5.0d1234\n", 0);
-    res2 = printf("%5.0d1234\n", 0);
+	a = 4;
+	b = 0;
+	res1 = ft_printf("%.*s,\n", -2, NULL, NULL);
+    res2 = printf("%.*s,\n", -2, NULL, NULL);
 	printf("%d\n", res1);
->>>>>>> 158379734bec2f5d0ccb3d2a38ebe93850bf1f6c
 	printf("%d\n", res2);
     return (1);
 }

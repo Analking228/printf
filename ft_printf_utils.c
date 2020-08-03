@@ -35,6 +35,11 @@ int			is_width(char *format, t_type *tab, va_list *arg)
 	if (format[tab->i] == '*')
 	{
 		tab->width = va_arg(*arg, int);
+		if (tab->width < 0)
+		{
+			tab->width *= -1;
+			tab->flag = 1;
+		}
 		tab->is_width = 1;
 		tab->i++;
 	}
@@ -51,7 +56,6 @@ int			is_width(char *format, t_type *tab, va_list *arg)
 int			is_precision(char *format, t_type *tab, va_list *arg)
 {
 	int		i;
-	char	str[13];
 
 	if (format[tab->i] == '*')
 	{
@@ -62,15 +66,20 @@ int			is_precision(char *format, t_type *tab, va_list *arg)
 	else if (format[tab->i] == '-' || ft_isdigit(format[tab->i]))
 	{
 		i = 0;
+		tab->height = ft_atoi(&format[tab->i]);
 		if (format[tab->i] == '-')
-			str[i++] = '-';
-		while (ft_isdigit(format[tab->i]))
+			tab->i++;
+		while (ft_isdigit(format[tab->i]) && format[tab->i])
+		{
+			tab->i++;
+			tab->is_height = 1;
+		}
+		/*while (ft_isdigit(format[tab->i]))
 		{
 			str[i++] = format[tab->i++];
 			tab->is_height = 1;
-		}
-		tab->height = ft_atoi(str);
-		if (tab->height >= 0 && tab->flag == 1)
+		}*/
+		if (tab->height >= 0 && tab->flag == 1 && !tab->is_width)
 			tab->flag = 2;
 	}
 	return (tab->is_height) ? 1 : 0;

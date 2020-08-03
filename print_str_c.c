@@ -19,11 +19,11 @@ int		print_str(t_type *tab, va_list *arg)
 
 	str = va_arg(*arg, char *);
 	if (!str)
-		str = "(NULL)";
+		str = "(null)";
 	len = ft_strlen(str);
-	if (tab->height > len || tab->height == 0)
+	if (tab->height > len || tab->is_height == 0)
 		tab->height = len;
-	else if (tab->height != 0)
+	else if (tab->is_height != 0)
 		len = tab->height;
 	if ((tab->width) > len)
 	{
