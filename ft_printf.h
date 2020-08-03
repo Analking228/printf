@@ -19,37 +19,33 @@
 # include "libft/libft.h"
 # include <stdio.h>
 
-typedef struct		s_type
+typedef struct	s_type
 {
-	/*counter*/
-	int				i;
-	int				prtd;
-	int				flag;
-    /*WidthNheight*/
-	int				width;
-	int				height;
-	int				is_width;
-	int				is_height;
-    /*types*/
-	char			type;
-}					t_type;
+	int			i;
+	int			prtd;
+	int			flag;
+	int			width;
+	int			height;
+	int			is_width;
+	int			is_height;
+	char		type;
+}				t_type;
 
-int					ft_printf(const char *, ...);
-int					is_flag(char *format, t_type *tab);
-int					is_width(char *format, t_type *tab, va_list *arg);
-int					is_precision(char *format, t_type *tab, va_list *arg);
-int					is_type(char *format, t_type *tab);
-int					print_with_type(t_type *tab, va_list *arg);
-int					parser_error_cheker(const char *format, t_type *tab, va_list *arg);
-void				zerofication(t_type *tab);
-int 				parser_types(t_type *tab, char *format, va_list *arg);
-int					print_char(t_type *tab, va_list *arg);
-int					print_str(t_type *tab, va_list *arg);
-int					print_num(t_type *tab, va_list *arg);
-int					print_unum(t_type *tab, va_list *arg);
-int					print_pointer(t_type *tab, va_list *arg);
-int					print_hex(t_type *tab, va_list *arg);
-void				ft_putwhitespace(int i);
-void				ft_putzero(int i);
+int				ft_printf(const char *format, ...);
+int				is_flag(char *format, t_type *tab);
+int				is_width(char *format, t_type *tab, va_list *arg);
+int				is_precision(char *format, t_type *tab, va_list *arg);
+int				is_type(char *format, t_type *tab);
+int				print_with_type(t_type *tab, va_list *arg);
+void			zerofication(t_type *tab);
+int				parser_types(t_type *tab, char *format, va_list *arg);
+int				print_char(t_type *tab, va_list *arg);
+int				print_str(t_type *tab, va_list *arg);
+int				print_num(t_type *tab, va_list *arg);
+int				print_unum(t_type *tab, va_list *arg);
+int				print_pointer(t_type *tab, va_list *arg);
+int				print_hex(t_type *tab, va_list *arg);
+void			ft_putwhitespace(int i);
+void			ft_putzero(int i);
 
 #endif

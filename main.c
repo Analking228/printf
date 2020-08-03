@@ -44,8 +44,8 @@ int     main()
     test = 1234567899;
 	a = 12;
 	b = 18;
-	res1 = ft_printf("%*c<\n", a, p[0]);
-    res2 = printf("%*c<\n", a, p[0]);
+	res1 = ft_printf("%0000d<\n", i);
+    res2 = printf("%0000d<\n", i);
 	printf("%d\n", res1);
 	printf("%d\n", res2);
     return (1);

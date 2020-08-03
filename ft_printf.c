@@ -13,9 +13,9 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-int     parser_error_cheker(const char *format, t_type *tab, va_list *arg)
+static int	parser_err_check(const char *format, t_type *tab, va_list *arg)
 {
-    int		control;
+	int		control;
 
 	while (format[tab->i] != 0)
 	{
@@ -26,20 +26,20 @@ int     parser_error_cheker(const char *format, t_type *tab, va_list *arg)
 			control = parser_types(tab, (char *)format, arg);
 			tab->i++;
 			if (control < 0)
-                return (-1);
+				return (-1);
 		}
-        else
-            {
-				if (format[tab->i] == '%')
-					tab->i += 2;
-				else
-					tab->i++;
-			}
+		else
+		{
+			if (format[tab->i] == '%')
+				tab->i += 2;
+			else
+				tab->i++;
+		}
 	}
 	return (1);
 }
 
-int 		parser_types(t_type *tab, char *format, va_list *arg)
+int			parser_types(t_type *tab, char *format, va_list *arg)
 {
 	while (is_flag((char *)format, tab) == 1)
 		tab->i++;
@@ -52,15 +52,15 @@ int 		parser_types(t_type *tab, char *format, va_list *arg)
 			if (!is_precision((char *)format, tab, arg))
 				return (-1);
 			else
-				{
+			{
 				if (tab->height < 0)
 					tab->is_height = 0;
 				else if (tab->flag == 2)
 					tab->flag = 0;
-				}
+			}
 		}
 		else
-			tab->is_height = 1;		
+			tab->is_height = 1;
 	}
 	if (is_type((char *)format, tab))
 		return (1);
@@ -88,8 +88,7 @@ int			parser_main(const char *format, t_type *tab, va_list *arg)
 			tab->i++;
 			zerofication(tab);
 			control = parser_types(tab, (char *)format, arg);
-			tab->i++;
-			return (2);
+			return (tab->i++) ? 2 : 0;
 		}
 		else
 		{
@@ -118,15 +117,15 @@ int			ft_printf(const char *format, ...)
 	va_start(arg, format);
 	tab.i = 0;
 	tab.prtd = 0;
-	if ((control = parser_error_cheker(format, &tab, &arg)) != -1)
+	if ((control = parser_err_check(format, &tab, &arg)) != -1)
 	{
 		va_end(arg);
 		va_start(arg, format);
 		tab.i = 0;
 		while ((control = parser_main(format, &tab, &arg)) != 0)
 			if (control == 2)
-					print_with_type(&tab, &arg);
+				print_with_type(&tab, &arg);
 	}
 	va_end(arg);
-	return (control < 0) ? -1 : tab.prtd ;
+	return (control < 0) ? -1 : tab.prtd;
 }

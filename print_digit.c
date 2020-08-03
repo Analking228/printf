@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-static int		get_len(int num)
+static int			get_len(int num)
 {
-	int len;
+	int				len;
 
 	len = 1;
 	while (num /= 10)
@@ -22,7 +22,7 @@ static int		get_len(int num)
 	return (len);
 }
 
-static void		ft_putnum_abs(int n)
+static void			ft_putnum_abs(int n)
 {
 	long long int	num;
 	char			c;
@@ -42,7 +42,7 @@ static void		ft_putnum_abs(int n)
 	}
 }
 
-static int		put_digit(t_type *tab, int num, int len)
+static int			put_digit(t_type *tab, int num, int len)
 {
 	if (len == 0)
 		return (0);
@@ -55,10 +55,10 @@ static int		put_digit(t_type *tab, int num, int len)
 	return (1);
 }
 
-int			print_num(t_type *tab, va_list *arg)
+int					print_num(t_type *tab, va_list *arg)
 {
-	int		num;
-	int		len;
+	int				num;
+	int				len;
 
 	num = va_arg(*arg, int);
 	len = get_len(num);
@@ -78,5 +78,5 @@ int			print_num(t_type *tab, va_list *arg)
 		return (tab->prtd += len + tab->width);
 	}
 	put_digit(tab, num, len);
-	return (tab->prtd+= len);
+	return (tab->prtd += len);
 }

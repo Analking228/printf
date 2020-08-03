@@ -41,6 +41,7 @@ static void	put_main(t_type *tab, unsigned unum, int len)
 	ft_putzero(tab->height);
 	put_unum(unum);
 }
+
 int			print_unum(t_type *tab, va_list *arg)
 {
 	unsigned int	unum;

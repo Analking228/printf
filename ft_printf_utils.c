@@ -14,7 +14,7 @@
 
 int			is_flag(char *format, t_type *tab)
 {
-	if (format[tab->i] == '-') 
+	if (format[tab->i] == '-')
 	{
 		tab->flag = 1;
 		return (1);
@@ -29,9 +29,6 @@ int			is_flag(char *format, t_type *tab)
 
 int			is_width(char *format, t_type *tab, va_list *arg)
 {
-
-	int		i;
-
 	if (format[tab->i] == '*')
 	{
 		tab->width = va_arg(*arg, int);
@@ -97,16 +94,4 @@ int			is_type(char *format, t_type *tab)
 	else if (c == 'X')
 		return (tab->type = 'X');
 	return (0);
-}
-
-void	ft_putwhitespace(int i)
-{
-	while (i-- > 0)
-		ft_putchar(' ');
-}
-
-void	ft_putzero(int i)
-{
-	while (i-- > 0)
-		ft_putchar('0');
 }
