@@ -45,7 +45,7 @@ int			is_width(char *format, t_type *tab, va_list *arg)
 			tab->i++;
 		tab->is_width = 1;
 	}
-	return (tab->width && tab->is_width) ? 1 : 0;
+	return (tab->is_width) ? 1 : 0;
 }
 
 int			is_precision(char *format, t_type *tab, va_list *arg)
